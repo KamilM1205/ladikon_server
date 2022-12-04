@@ -1,0 +1,13 @@
+package ru.ladikon.server.ladikon_server.user;
+
+public class User {
+
+  private final String name;
+  private final String surname;
+  private final String patronymic;
+  private final String Date
+
+  public User() {
+  }
+
+}
