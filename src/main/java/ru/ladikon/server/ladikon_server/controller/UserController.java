@@ -29,7 +29,9 @@ public class UserController {
   @ResponseBody
   public ResponseEntity<User> get_info(@RequestParam("user_id") int user_id) {
     if (userService.exists(user_id)) {
-      return new ResponseEntity<>(userService.read(user_id), HttpStatus.OK);
+      User user = userService.read(user_id);
+      user.setTokens(null);
+      return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     return new ResponseEntity<>(HttpStatus.NOT_FOUND);

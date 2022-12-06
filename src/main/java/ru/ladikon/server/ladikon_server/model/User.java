@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
@@ -19,8 +20,11 @@ import jakarta.persistence.Transient;
 @Table(name = "user_account")
 public class User {
   @Transient
+  @JsonIgnore
   public final String FREELANCER = "FREELANCER";
+
   @Transient
+  @JsonIgnore
   public final String CUSTOMER = "CUSTOMER";
 
   @Id
@@ -53,8 +57,8 @@ public class User {
   @JsonProperty("account_type")
   private String account_type;
 
-  // @Column(name = "tokens")
-  // private List<String> tokens;
+  @Column(name = "tokens")
+  private List<String> tokens;
 
   public void setId(int id) {
     this.id = id;
@@ -130,14 +134,14 @@ public class User {
     return account_type;
   }
 
-  // @JsonSetter("tokens")
-  // public void setTokens(List<String> tokens) {
-  // this.tokens = tokens;
-  // }
-  //
-  // @JsonGetter("tokens")
-  // public List<String> getTokens() {
-  // return tokens;
-  // }
+  @JsonSetter("tokens")
+  public void setTokens(List<String> tokens) {
+    this.tokens = tokens;
+  }
+
+  @JsonGetter("tokens")
+  public List<String> getTokens() {
+    return tokens;
+  }
 
 }

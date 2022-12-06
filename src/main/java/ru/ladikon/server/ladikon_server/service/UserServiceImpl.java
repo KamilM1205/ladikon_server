@@ -15,7 +15,6 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public boolean create(User user) {
-    System.out.println(user.getAccountType());
     if (userRepository.findByPhone(user.getPhone()).isEmpty()) {
       user.setRegistrationDate(new Date());
       userRepository.save(user);
@@ -28,7 +27,7 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public User read(int id) {
-    return userRepository.getReferenceById(id);
+    return userRepository.findById(id).get();
   }
 
   @Override
