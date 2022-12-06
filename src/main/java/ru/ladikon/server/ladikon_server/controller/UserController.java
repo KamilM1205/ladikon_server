@@ -31,6 +31,7 @@ public class UserController {
     if (userService.exists(user_id)) {
       User user = userService.read(user_id);
       user.setTokens(null);
+      user.setPassword(null);
       return new ResponseEntity<>(user, HttpStatus.OK);
     }
 

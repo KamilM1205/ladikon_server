@@ -1,5 +1,8 @@
 package ru.ladikon.server.ladikon_server.service;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +20,17 @@ public class UserServiceImpl implements UserService {
   public boolean create(User user) {
     if (userRepository.findByPhone(user.getPhone()).isEmpty()) {
       user.setRegistrationDate(new Date());
+
+      try {
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        user.setPassword(
+            new String(md.digest(user.getPassword().getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8));
+      } catch (NoSuchAlgorithmException e) {
+        System.out.println(e.toString());
+
+        return false;
+      }
+
       userRepository.save(user);
 
       return true;
