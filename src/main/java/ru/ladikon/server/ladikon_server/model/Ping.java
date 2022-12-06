@@ -1,4 +1,4 @@
-package ru.ladikon.server.ladikon_server.ping;
+package ru.ladikon.server.ladikon_server.model;
 
 public class Ping {
   private final String content;

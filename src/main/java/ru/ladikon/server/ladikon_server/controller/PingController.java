@@ -1,7 +1,9 @@
-package ru.ladikon.server.ladikon_server.ping;
+package ru.ladikon.server.ladikon_server.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import ru.ladikon.server.ladikon_server.model.Ping;
 
 @RestController
 public class PingController {
